@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
       <header className="App-header">
-        Census Data from WA
+        Spanish Speakers in WA (from 2022 ACS Data)
       </header>
       <div className="App">
         <DataTable/>
