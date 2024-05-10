@@ -33,7 +33,7 @@ export default function DataTable() {
     if (!loading && !error)
       {
         console.log(response?.data)
-        const censusResponse: string[][] = response?.data
+        const censusResponse: string[][] = response?.data.slice(1) //skip header row
         const censusRows = censusResponse.map(row => {
           return {
             "countyName": row[0],
