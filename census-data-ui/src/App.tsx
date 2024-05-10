@@ -1,5 +1,5 @@
 import './App.css';
-import DataTable from './dataTable';
+import CensusDataTable from './CensusDataTable';
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         Spanish Speakers in WA (from 2022 ACS Data)
       </header>
       <div className="App">
-        <DataTable/>
+        <CensusDataTable/>
       </div>
     </div>
   );

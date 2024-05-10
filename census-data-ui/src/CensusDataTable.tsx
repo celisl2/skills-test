@@ -21,7 +21,7 @@ interface CountyData {
   fipsCode: string
 }
 
-export default function DataTable() {
+export default function CensusDataTable() {
 
   const [{ response, loading, error }] = useAxios({
     method: 'GET',
