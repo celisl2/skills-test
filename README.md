@@ -28,8 +28,9 @@ found [here](https://jestjs.io/docs/getting-started#using-typescript)
 
 We're providing a React app that uses MUI to display a simple table. The
 table displays a set of census data for all 39 counties in Washington
-State. Please generalize this so it can work in any of the 50 states, improve 
-how it looks, and improve the usability.
+State. Please add a dropdown of all 50 states and make the page display the
+appropriate state's county data whenever you change the dropdown. Then spend 
+30-45 minutes improving the general look and feel. 
 
 `npm start`
 Runs the app in the development mode.
