@@ -48,7 +48,7 @@ export default function CensusDataTable() {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 400, maxWidth: 1000}} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>County Name</TableCell>
