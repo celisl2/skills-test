@@ -1,5 +1,5 @@
 
-export class CrazyList<T> {
+export class WickedCoolList<T> {
     innerList:[T]; 
 
     constructor(listElems: [T]) {
