@@ -44,7 +44,7 @@ export default function CensusDataTable() {
         })
         setRows(censusRows)
       }
-  }, [response]);
+  }, [response, loading, error]);
 
   return (
     <TableContainer component={Paper}>
