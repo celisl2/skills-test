@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useAxios from 'axios-hooks';
+import { StateData } from '../models/StateData';
+import { CountyData } from '../models/CouuntyData';
 
 const TOTAL_POPULATION_CENSUS_VAR = "B01001_001E"
 const SPANISH_SPEAKERS_CENSUS_VAR = "B06007_003E"
@@ -14,33 +16,19 @@ const BASE_CENSUS_URL = "https://api.census.gov/data/2022/acs/acs5"
 const FULL_CENSUS_URL = 
   `${BASE_CENSUS_URL}?get=NAME,${TOTAL_POPULATION_CENSUS_VAR},${SPANISH_SPEAKERS_CENSUS_VAR}&for=county:*`
 
-interface CountyData {
-  countyName: string,
-  population: number,
-  spanishSpeakers: number,
-  fipsCode: string
-}
 
-// interface StateData {
-//   stateName: string,
-//   stateCode: number,
-// }
-
-export default function CensusDataTable({selectedSate} : {selectedSate: number}) {
+export default function CensusDataTable({selectedSate} : {selectedSate: StateData}) {
+  const currentStateCode = selectedSate.stateCode;
   const [{ response, loading, error }] = useAxios({
     method: 'GET',
-    url: `${FULL_CENSUS_URL}&in=state:${selectedSate}`,
+    url: `${FULL_CENSUS_URL}&in=state:${currentStateCode}`,
   })
   const [rows, setRows] = useState<CountyData[]>([]);
   
   useEffect(() => {
-    if (!loading && !error)
+    if (!loading && !error && response?.data)
       {
-        console.log("here in census")
-        //console.log(response?.data)
         const censusResponse: string[][] = response?.data.slice(1) //skip header row
-        console.log("before")
-        console.log(censusResponse)
         const censusRows = censusResponse.map(row => {
           return {
             "countyName": row[0],
@@ -54,7 +42,7 @@ export default function CensusDataTable({selectedSate} : {selectedSate: number})
   }, [response, loading, error]);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="center">
       <Table sx={{ minWidth: 400, maxWidth: 1000}} aria-label="simple table">
         <TableHead>
           <TableRow>
