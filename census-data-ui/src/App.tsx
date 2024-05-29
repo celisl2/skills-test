@@ -1,22 +1,26 @@
 import { useState } from 'react';
-import './App.css';
+import './styles/App.css';
 import CensusDataTable from './components/CensusDataTable';
 import StatePicker from './components/StatePicker';
 import { StateData } from './models/StateData';
+import { Alert } from '@mui/material';
 
 function App() {
-  const [selectedState, setSelectedState] = useState<StateData>({ stateName: "Washington", stateCode: "53"});
+  const [selectedState, setSelectedState] = useState<StateData>({} as StateData);
 
   return (
     <div>
-      <header className="App-header">
-        Spanish Speakers in {selectedState.stateName} (from 2022 ACS Data)
-      </header>
+      <h1 className="rubik-font">Spanish Speakers by State</h1>
       <div className="App">
-        {/* {currentState?.length === 0 ?  <StatePicker selectedSate={53}/> : <CensusDataTable selectedSate={0}/>} */}
         <StatePicker selectedSate={selectedState} onUpdate={setSelectedState}/>
+        {selectedState.stateName !== undefined && <Alert className='alert' severity="info">Showing Spanish Speakers in {selectedState.stateName} (from 2022 ACS Data)</Alert>}
         <CensusDataTable selectedSate={selectedState}/>
       </div>
+      {selectedState.stateName !== undefined && (
+        <footer>
+          <p>Data provided by the American Community Survey</p>
+        </footer>
+      )}
     </div>
   );
 }

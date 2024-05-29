@@ -1,0 +1,21 @@
+.statePicker {
+    justify-content: space-evenly;
+    flex-direction: row;
+    border: 2px solid #6DAEDB;
+    width: 35%;
+    min-width: 355px;
+    min-height:12vh;
+    margin: 3% auto;
+    border-radius: 5px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#direction {
+    margin: 24px;
+    color: #0E0E52;
+}

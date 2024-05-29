@@ -2,6 +2,7 @@ import { Box, FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } fro
 import useAxios from "axios-hooks";
 import { useEffect, useState } from "react";
 import { StateData } from "../models/StateData";
+import '../styles/StatePicker.css'
 
 const STATE_CODES_URL = "https://api.census.gov/data/2022/acs/acs5?get=NAME&for=state:*"
 
@@ -36,8 +37,9 @@ export default function StatePicker({selectedSate, onUpdate} : {selectedSate: St
     }, [response, loading, error]);
 
     return (
-        <div className="center">
-            <Box sx={{ m: 4, minWidth: 200 }}>
+        <div className="statePicker center">
+            <h2 id="direction" className="rubik-font">Select a State</h2>
+            <Box sx={{ margin: 3, minWidth: 200 }}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">State</InputLabel>
                     <Select
@@ -52,7 +54,5 @@ export default function StatePicker({selectedSate, onUpdate} : {selectedSate: St
                 </FormControl>
             </Box>
         </div>
-
     );
-
 };
