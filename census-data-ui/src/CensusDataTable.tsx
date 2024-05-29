@@ -12,7 +12,7 @@ const TOTAL_POPULATION_CENSUS_VAR = "B01001_001E"
 const SPANISH_SPEAKERS_CENSUS_VAR = "B06007_003E"
 const BASE_CENSUS_URL = "https://api.census.gov/data/2022/acs/acs5"
 const FULL_CENSUS_URL = 
-  `${BASE_CENSUS_URL}?get=NAME,${TOTAL_POPULATION_CENSUS_VAR},${SPANISH_SPEAKERS_CENSUS_VAR}&for=county:*&in=state:53`
+  `${BASE_CENSUS_URL}?get=NAME,${TOTAL_POPULATION_CENSUS_VAR},${SPANISH_SPEAKERS_CENSUS_VAR}&for=county:*`
 
 interface CountyData {
   countyName: string,
@@ -21,19 +21,26 @@ interface CountyData {
   fipsCode: string
 }
 
-export default function CensusDataTable() {
+// interface StateData {
+//   stateName: string,
+//   stateCode: number,
+// }
 
+export default function CensusDataTable({selectedSate} : {selectedSate: number}) {
   const [{ response, loading, error }] = useAxios({
     method: 'GET',
-    url: FULL_CENSUS_URL,
+    url: `${FULL_CENSUS_URL}&in=state:${selectedSate}`,
   })
   const [rows, setRows] = useState<CountyData[]>([]);
   
   useEffect(() => {
     if (!loading && !error)
       {
-        console.log(response?.data)
+        console.log("here in census")
+        //console.log(response?.data)
         const censusResponse: string[][] = response?.data.slice(1) //skip header row
+        console.log("before")
+        console.log(censusResponse)
         const censusRows = censusResponse.map(row => {
           return {
             "countyName": row[0],
