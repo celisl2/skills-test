@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useAxios from 'axios-hooks';
 import { StateData } from '../models/StateData';
-import { CountyData } from '../models/CouuntyData';
+import { CountyData } from '../models/CountyData';
 
 const TOTAL_POPULATION_CENSUS_VAR = "B01001_001E"
 const SPANISH_SPEAKERS_CENSUS_VAR = "B06007_003E"
